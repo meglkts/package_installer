@@ -24,10 +24,26 @@ describe 'package_installer' do
 		end
 	end
 
+	describe '#order_packages' do
+		it 'should return array with all original packages included' do
+			expect(order_packages(packages2).count).to eq(6)
+		end
+	end
+
+	describe '#order_packages' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			installation_array = order_packages(packages2)
+			expect(installation_array.index('Fraudstream')).to be > installation_array.index('Leetmeme')
+			expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
+		end
+	end
+
 	describe '#installation_order' do
 		it 'should take the ordered array and return as a string' do
 			expect(installation_order(packages1)).to eq('CamelCaser, KittenService')
 		end
 	end
 end
+
+
 

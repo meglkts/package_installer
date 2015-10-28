@@ -31,8 +31,3 @@ end
 def installation_order_to_s(input_array)
 	order_packages(input_array).join(", ")
 end
-
-# ["Fraudstream: Leetmeme", "Cyberportal: Ice", "Leetmeme: Cyberportal", "CamelCaser: KittenService", "Ice: ", "KittenService: "]
-
-# Ice
-# KittenService

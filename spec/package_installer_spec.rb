@@ -31,27 +31,29 @@ describe 'package_installer' do
 		end
 	end
 
-	# describe '#order_packages' do
-	# 	it 'should return array with all original packages included' do
-	# 		expect(order_packages(packages2).count).to eq(6)
-	# 	end
-	# end
+	describe '#order_packages' do
+		it 'should return array with all original packages included' do
+			expect(order_packages(packages2).count).to eq(6)
+		end
+	end
 
-	# describe '#order_packages' do
-	# 	it 'should order packages so dependencies precede their dependent packages' do
-	# 		installation_array = order_packages(packages2)
-	# 		expect(installation_array.index('Fraudstream')).to be > installation_array.index('Leetmeme')
-	# 		expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
-	# 	end
-	# end
+	describe '#order_packages' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			installation_array = order_packages(packages2)
+			expect(installation_array.index('Fraudstream')).to be > installation_array.index('Leetmeme')
+			expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
+		end
+	end
 
-	# describe '#order_packages' do
-	# 	it 'should order packages so dependencies precede their dependent packages' do
-	# 		p input = packages2.shuffle
-	# 		p installation_array = order_packages(input)
-	# 		expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
-	# 	end
-	# end
+10.times do
+	describe '#order_packages' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			input = packages2.shuffle
+			installation_array = order_packages(input)
+			expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
+		end
+	end
+end
 
 	describe '#installation_order_to_s' do
 		it 'should take the ordered array and return as a string' do

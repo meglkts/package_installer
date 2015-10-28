@@ -17,5 +17,11 @@ describe 'package_installer' do
 			expect(no_dependency_packages(formatted_array)).to eq(['KittenService', 'Ice'])
 		end
 	end
+
+	describe '#order_packages' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			expect(order_packages(packages1)).to eq(['CamelCaser', 'KittenService'])
+		end
+	end
 end
 

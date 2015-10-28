@@ -4,9 +4,17 @@ describe 'package_installer' do
 	let(:packages1) { ['KittenService: CamelCaser', 'CamelCaser: '] }
 	let(:packages2) { ['KittenService: ','Leetmeme: Cyberportal','Cyberportal: Ice','CamelCaser: KittenService','Fraudstream: Leetmeme','Ice: '] }
 
-	describe 'format_array' do
+
+	describe '#format_array' do
 		it 'should return an array containing packages and dependencies as inner arrays' do
 			expect(format_input(packages1)).to eq([['KittenService', 'CamelCaser'], ['CamelCaser']])
+		end
+	end
+
+	describe '#add_no_dependencies' do
+		it 'should add packages with no dependencies to the ordered installation array' do
+			formatted_array = format_input(packages2)
+			expect(no_dependency_packages(formatted_array)).to eq(['KittenService', 'Ice'])
 		end
 	end
 end

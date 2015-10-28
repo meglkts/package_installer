@@ -18,18 +18,18 @@ describe 'package_installer' do
 		end
 	end
 
-	# describe '#add_no_dependencies' do
-	# 	it 'should add packages with no dependencies to the ordered installation array' do
-	# 		formatted_array = format_input(packages2)
-	# 		expect(no_dependency_packages(formatted_array)).to eq(['KittenService', 'Ice'])
-	# 	end
-	# end
+	describe '#no_dependency_packages' do
+		it 'should add packages with no dependencies to the ordered installation array' do
+			formatted_array = format_input(packages2)
+			expect(no_dependency_packages(formatted_array)).to eq(['KittenService', 'Ice'])
+		end
+	end
 
-	# describe '#order_packages' do
-	# 	it 'should order packages so dependencies precede their dependent packages' do
-	# 		expect(order_packages(packages1)).to eq(['CamelCaser', 'KittenService'])
-	# 	end
-	# end
+	describe '#order_packages' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			expect(order_packages(packages1)).to eq('CamelCaser, KittenService')
+		end
+	end
 
 	# describe '#order_packages' do
 	# 	it 'should return array with all original packages included' do
@@ -53,11 +53,6 @@ describe 'package_installer' do
 	# 	end
 	# end
 
-	# describe '#installation_order' do
-	# 	it 'should take the ordered array and return as a string' do
-	# 		expect(installation_order(packages1)).to eq('CamelCaser, KittenService')
-	# 	end
-	# end
 end
 
 

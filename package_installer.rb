@@ -1,9 +1,5 @@
-def format_input(array)
-	array.map { |package| package.split(": ") }
-end
-
-def no_dependency_packages(formatted_array)
-	formatted_array.select { |package| package.length == 1 }.flatten
+def format_input(input_array)
+	input_array.map { |package| package.split(": ") }
 end
 
 def dependency_hash(input_array)
@@ -14,22 +10,27 @@ def dependency_hash(input_array)
 	dependencies
 end
 
+def no_dependency_packages(formatted_array)
+	formatted_array.select { |package| package.length == 1 }.flatten
+end
+
 def order_packages(input_array)
-	package_order = []
-	packages_to_install = format_input(input_array)
+	installation_order = []
+	dependencies = dependency_hash(input_array)
 
-	package_order.concat(no_dependency_packages(packages_to_install))
-	# packages_to_install.delete_if {|package| package.length == 1}
-
-	package_order.each do | package |
-		
+	installation_order.concat(no_dependency_packages(format_input(input_array)))
+	
+	installation_order.each do | package |
+		if dependency = dependencies.key(package)
+			installation_order << dependency
+		end
 	end
-	package_order
+	installation_order.join(", ")
 end
 
-def installation_order(input_array)
-	order_packages(input_array).join(", ")
-end
+# def installation_order(input_array)
+# 	order_packages(input_array).join(", ")
+# end
 
 # ["Fraudstream: Leetmeme", "Cyberportal: Ice", "Leetmeme: Cyberportal", "CamelCaser: KittenService", "Ice: ", "KittenService: "]
 

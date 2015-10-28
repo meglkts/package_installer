@@ -23,3 +23,6 @@ def order_packages(input_array)
 	package_order
 end
 
+def installation_order(input_array)
+	order_packages(input_array).join(", ")
+end

@@ -23,5 +23,11 @@ describe 'package_installer' do
 			expect(order_packages(packages1)).to eq(['CamelCaser', 'KittenService'])
 		end
 	end
+
+	describe '#installation_order' do
+		it 'should take the ordered array and return as a string' do
+			expect(installation_order(packages1)).to eq('CamelCaser, KittenService')
+		end
+	end
 end
 

@@ -27,7 +27,7 @@ describe 'package_installer' do
 
 	describe '#order_packages' do
 		it 'should order packages so dependencies precede their dependent packages' do
-			expect(order_packages(packages1)).to eq('CamelCaser, KittenService')
+			expect(order_packages(packages1)).to eq(['CamelCaser', 'KittenService'])
 		end
 	end
 
@@ -53,6 +53,11 @@ describe 'package_installer' do
 	# 	end
 	# end
 
+	describe '#installation_order_to_s' do
+		it 'should take the ordered array and return as a string' do
+			expect(installation_order_to_s(packages1)).to eq('CamelCaser, KittenService')
+		end
+	end
 end
 
 

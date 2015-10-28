@@ -19,18 +19,18 @@ def order_packages(input_array)
 	dependencies = dependency_hash(input_array)
 
 	installation_order.concat(no_dependency_packages(format_input(input_array)))
-	
+
 	installation_order.each do | package |
 		if dependency = dependencies.key(package)
 			installation_order << dependency
 		end
 	end
-	installation_order.join(", ")
+	installation_order
 end
 
-# def installation_order(input_array)
-# 	order_packages(input_array).join(", ")
-# end
+def installation_order_to_s(input_array)
+	order_packages(input_array).join(", ")
+end
 
 # ["Fraudstream: Leetmeme", "Cyberportal: Ice", "Leetmeme: Cyberportal", "CamelCaser: KittenService", "Ice: ", "KittenService: "]
 

@@ -57,17 +57,23 @@ describe 'package_installer' do
 		end
 	end
 
-	describe '#installation_order_to_s for valid input' do
-		it 'should take the ordered array and return as a string' do
-			expect(installation_order_to_s(valid_set1)).to eq('CamelCaser, KittenService')
-		end
-	end
-
 	5.times do
 		describe '#order_packages for invalid input' do
 			it 'should throw exception for cyclical package dependency' do
 				expect { order_packages(invalid_set.shuffle) }.to raise_exception("Package set contains cycle")
 			end
+		end
+	end
+
+	describe '#installation_order_to_s for valid input' do
+		it 'should take the input array and return as a string' do
+			expect(installation_order_to_s(valid_set1)).to eq('CamelCaser, KittenService')
+		end
+	end
+
+	describe '#installation_order_to_s for invalid input' do
+		it 'should take the input array and return as a string' do
+			expect { installation_order_to_s(invalid_set) }.to raise_exception("Package set contains cycle")
 		end
 	end
 end

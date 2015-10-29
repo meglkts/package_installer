@@ -11,7 +11,7 @@ def dependency_hash(input_array)
 	dependencies
 end
 
-def no_dependency_packages(input_array)
+def independent_packages(input_array)
 	format_input(input_array).select { |package| package.length == 1 }.flatten
 end
 
@@ -21,13 +21,13 @@ end
 
 def order_packages(input_array)
 	installation_order = []
-	dependencies = dependency_hash(input_array)
+	dependency_index = dependency_hash(input_array)
 
-	installation_order.concat(no_dependency_packages(input_array))
+	installation_order.concat(independent_packages(input_array))
 
 	installation_order.each do | package |
-		if dependency = dependencies.key(package)
-			installation_order << dependency
+		if dependent_package = dependency_index.key(package)
+			installation_order << dependent_package
 		end
 	end
 	

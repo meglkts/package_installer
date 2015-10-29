@@ -50,7 +50,9 @@ describe 'package_installer' do
 			it 'should order packages so dependencies precede their dependent packages' do
 				input = valid_set2.shuffle
 				installation_array = order_packages(input)
+				expect(installation_array.index('Cyberportal')).to be > installation_array.index('Ice')
 				expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
+				expect(installation_array.index('Fraudstream')).to be > installation_array.index('Leetmeme')
 			end
 		end
 	end
@@ -64,7 +66,7 @@ describe 'package_installer' do
 	5.times do
 		describe '#order_packages for invalid input' do
 			it 'should throw exception for cyclical package dependency' do
-				p installation_array = order_packages(invalid_set)
+				installation_array = order_packages(invalid_set)
 			end
 		end
 	end

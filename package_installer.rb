@@ -4,6 +4,7 @@ end
 
 def dependency_hash(input_array)
 	dependencies = {}
+
 	format_input(input_array).each do | package |
 		dependencies[package[0]] = package[1]
 	end

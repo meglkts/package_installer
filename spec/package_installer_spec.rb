@@ -66,7 +66,7 @@ describe 'package_installer' do
 	5.times do
 		describe '#order_packages for invalid input' do
 			it 'should throw exception for cyclical package dependency' do
-				installation_array = order_packages(invalid_set)
+				expect { order_packages(invalid_set.shuffle) }.to raise_exception("Package set contains cycle")
 			end
 		end
 	end

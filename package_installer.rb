@@ -11,8 +11,8 @@ def dependency_hash(input_array)
 	dependencies
 end
 
-def no_dependency_packages(formatted_array)
-	formatted_array.select { |package| package.length == 1 }.flatten
+def no_dependency_packages(input_array)
+	format_input(input_array).select { |package| package.length == 1 }.flatten
 end
 
 def valid_input?(input_array, installation_order)
@@ -23,7 +23,7 @@ def order_packages(input_array)
 	installation_order = []
 	dependencies = dependency_hash(input_array)
 
-	installation_order.concat(no_dependency_packages(format_input(input_array)))
+	installation_order.concat(no_dependency_packages(input_array))
 
 	installation_order.each do | package |
 		if dependency = dependencies.key(package)

@@ -20,8 +20,7 @@ describe 'package_installer' do
 
 	describe '#no_dependency_packages' do
 		it 'should add packages with no dependencies to the ordered installation array' do
-			formatted_array = format_input(valid_set2)
-			expect(no_dependency_packages(formatted_array)).to eq(['KittenService', 'Ice'])
+			expect(no_dependency_packages(valid_set2)).to eq(['KittenService', 'Ice'])
 		end
 	end
 

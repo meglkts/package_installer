@@ -11,9 +11,9 @@ describe 'package_installer' do
 		end
 	end
 
-	describe '#dependency_hash' do
+	describe '#find_dependencies' do
 		it 'should return a hash containing packages and dependencies as key value pairs' do
-			dependencies = dependency_hash(valid_set1)
+			dependencies = find_dependencies(valid_set1)
 			expect(dependencies['KittenService']).to eq('CamelCaser')
 		end
 	end

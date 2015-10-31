@@ -27,14 +27,11 @@ end
 
 def order_packages(packages_to_install)
 	installation_order = []
-	dependency_index = find_dependencies(packages_to_install)
 
 	installation_order.concat(independent_packages(packages_to_install))
 
 	installation_order.each do | package |
-		if dependent_package = dependency_index.key(package)
-			installation_order << dependent_package
-		end
+		installation_order.concat(find_dependent_packages(packages_to_install, package))
 	end
 	
 	if valid_package_set?(packages_to_install, installation_order)

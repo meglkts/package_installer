@@ -3,7 +3,7 @@ require_relative '../package_installer'
 describe 'package_installer' do
 	let(:valid_set1) { ['KittenService: CamelCaser', 'CamelCaser: '] }
 	let(:valid_set2) { ['KittenService: ','Leetmeme: Cyberportal','Cyberportal: Ice','CamelCaser: KittenService','Fraudstream: Leetmeme','Ice: '] }
-	let(:valid_set3) { ['KittenService: Leetmeme', 'CamelCaser: Leetmeme', 'Leetmeme: ', 'Fraudstream: Cyberportal', 'Ice: ', 'Cyberportal: Ice']}
+	let(:valid_set3) { ['KittenService: Leetmeme', 'CamelCaser: Leetmeme', 'Leetmeme: Fraudstream', 'Fraudstream: Cyberportal', 'Ice: ', 'Cyberportal: Ice']}
 	let(:invalid_set) { ['KittenService: ','Leetmeme: Cyberportal','Cyberportal: Ice','CamelCaser: KittenService','Fraudstream: ','Ice: Leetmeme'] }
 
 
@@ -52,12 +52,19 @@ describe 'package_installer' do
 		end
 	end
 
-	# describe '#order_packages for valid input' do
-	# 	it 'should order packages so dependencies precede their dependent packages' do
-	# 		installation_array = order_packages(valid_set3)
-	# 		expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
-	# 	end
-	# end
+	describe '#order_packages for valid input that has multiple packages depending on same package' do
+		it 'should not raise an error' do
+				expect { order_packages(valid_set3) }.not_to raise_error
+		end
+	end
+
+	describe '#order_packages for valid input that has multiple packages depending on same package' do
+		it 'should order packages so dependencies precede their dependent packages' do
+			installation_array = order_packages(valid_set3)
+			expect(installation_array.index('Leetmeme')).to be < installation_array.index('CamelCaser')
+			expect(installation_array.index('Leetmeme')).to be < installation_array.index('KittenService')
+		end
+	end
 
 	10.times do
 		describe '#order_packages for valid input' do

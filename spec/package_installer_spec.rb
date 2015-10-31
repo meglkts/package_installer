@@ -52,9 +52,11 @@ describe 'package_installer' do
 		end
 	end
 
-	describe '#order_packages for valid input that has multiple packages depending on same package' do
-		it 'should not raise an error' do
-				expect { order_packages(valid_set3) }.not_to raise_error
+	5.times do
+		describe '#order_packages for valid input that has multiple packages depending on same package' do
+			it 'should not raise an error' do
+					expect { order_packages(valid_set3.shuffle) }.not_to raise_error
+			end
 		end
 	end
 

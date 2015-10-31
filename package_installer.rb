@@ -15,6 +15,10 @@ def independent_packages(packages_to_install)
 	format_input(packages_to_install).select { |package| package.length == 1 }.flatten
 end
 
+def find_dependent_packages
+
+end
+
 def valid_package_set?(packages_to_install, installation_order)
 	packages_to_install.count == installation_order.count 
 end
@@ -34,7 +38,7 @@ def order_packages(packages_to_install)
 	if valid_package_set?(packages_to_install, installation_order)
 		installation_order
 	else
-		raise Exception.new("Package set contains cycle")
+		raise "Package set contains cycle"
 	end
 end
 

@@ -3,7 +3,9 @@ require_relative '../package_installer'
 describe 'package_installer' do
 	let(:valid_set1) { ['KittenService: CamelCaser', 'CamelCaser: '] }
 	let(:valid_set2) { ['KittenService: ','Leetmeme: Cyberportal','Cyberportal: Ice','CamelCaser: KittenService','Fraudstream: Leetmeme','Ice: '] }
+	let(:valid_set3) { ['KittenService: Leetmeme', 'CamelCaser: Leetmeme', 'Leetmeme: ', 'Fraudstream: Cyberportal', 'Ice: ', 'Cyberportal: Ice']}
 	let(:invalid_set) { ['KittenService: ','Leetmeme: Cyberportal','Cyberportal: Ice','CamelCaser: KittenService','Fraudstream: ','Ice: Leetmeme'] }
+
 
 	describe '#format_array' do
 		it 'should return an array containing packages and dependencies as inner arrays' do
@@ -44,6 +46,13 @@ describe 'package_installer' do
 		end
 	end
 
+	# describe '#order_packages for valid input' do
+	# 	it 'should order packages so dependencies precede their dependent packages' do
+	# 		installation_array = order_packages(valid_set3)
+	# 		expect(installation_array.index('Leetmeme')).to be > installation_array.index('Cyberportal')
+	# 	end
+	# end
+
 	10.times do
 		describe '#order_packages for valid input' do
 			it 'should order packages so dependencies precede their dependent packages' do
@@ -59,7 +68,7 @@ describe 'package_installer' do
 	5.times do
 		describe '#order_packages for invalid input' do
 			it 'should throw exception for cyclical package dependency' do
-				expect { order_packages(invalid_set.shuffle) }.to raise_exception("Package set contains cycle")
+				expect { order_packages(invalid_set.shuffle) }.to raise_error("Package set contains cycle")
 			end
 		end
 	end
@@ -72,7 +81,7 @@ describe 'package_installer' do
 
 	describe '#installation_order_to_s for invalid input' do
 		it 'should take the input array and return as a string' do
-			expect { installation_order_to_s(invalid_set) }.to raise_exception("Package set contains cycle")
+			expect { installation_order_to_s(invalid_set) }.to raise_error("Package set contains cycle")
 		end
 	end
 end

@@ -26,6 +26,12 @@ describe 'package_installer' do
 		end
 	end
 
+	describe '#find_dependent_packages' do
+		it 'should return an array of packages that depend on the given package' do
+			expect(find_dependent_packages(valid_set3, 'Leetmeme')).to eq(['KittenService', 'CamelCaser'])
+		end
+	end
+
 	describe '#order_packages for valid input' do
 		it 'should order packages so dependencies precede their dependent packages' do
 			expect(order_packages(valid_set1)).to eq(['CamelCaser', 'KittenService'])
